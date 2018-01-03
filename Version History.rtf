@@ -1,0 +1,87 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 ---------------------------------------------------------------------------------------------------------------------------------------\
+Residential Power Demand Simulation Tool - Version History\
+\
+This document is provided as a way to track the changes to the Residential Power Demand Simulation Tool in comparison to the version outlined and presented in my thesis.\
+-------------------------------------------------------------------------------------------------------------------(12-31-2013)--\
+Version 1.0 - Initial release of the simulation tool.\
+\
+1. The ability to model nonelectric dryers was added. The nonelectric dryer model behaves exactly as the electric dryer model (a timed load with a constant power demand). The only difference is the much lower power demand of the nonelectric dryer model compared to the electric dryer model.\
+\
+2. Added the ability to override the default residential load distribution percentages manually with a single file (LoadDistribution_Override.txt). This allows the user to update percentages quickly without the need to use the programs different GUI\'92s to change percentages individually.\
+\
+3. Changed the image reading function in the Occupant Behavior Models GUI so that the user no longer needs to have the Image Processing Toolbox installed to display the plotting keys.\
+\
+4. Fixed an error in the Home/HVAC Model Parameters GUI which prevented the user from changing the percentage of household\'92s with resistive heating systems.\
+---------------------------------------------------------------------------------------------------------------------(1-21-2014)--\
+Version 1.1 - The primary purpose of this version is the further development of the tool.\
+\
+1. Changed the default Water Heater Mean Power Demand value to 4.5 kW. Also changed the minimum and maximum allowable Water Heater Mean Power Demand values to 4 kW and 5 kW.\
+\
+2. Converted the \'91Occupant_Override\'92 and \'91LoadDistribution_Override\'92 files from .txt to .csv format. The user can now define specific occupant make-ups per home using the Occupant_Override.csv file. Additionally, the ability to override residential load distribution percentages on a home by home basis using a single file (Load_Override.csv) was also added. With this new capability, the user can now simulate a string of homes, each with their own defined occupant and load make-ups.\
+\
+3. Made multiple changes to the Home/HVAC Model: 1. Corrected an error in the HVAC Design Cooling Capacity equation, 2. Corrected an error with the HVAC Cooling/Heating Capacity Factor equations, 3. Modified the Auxiliary Temperature Limit equation to be consistent with the method used by GridLAB-D, 4. Added a fan to the resistive heating model, 5. Added the affect of the home\'92s Latent Load Fraction to the HVAC Cooling Rate equation, 6. The ability to simulate a home with a heat pump heating system and without a central air conditioning system was added.\
+\
+4. Changed the minimum and maximum allowable HVAC Auxiliary Deadband values to 0 F and 4 F.\
+---------------------------------------------------------------------------------------------------------------------(1-28-2014)--\
+Version 2.0 - This version adds the ability to run simulations on a one minute time scale.\
+\
+1. Rewrote ResidentialSimulator.m and various Load Models and Functions to add the capability to run simulations using a variable time step. The user can now specify either a one second or one minute time step for each simulation from the main GUI without impacting simulation accuracy.\
+\
+2. GUI files were updated so that parameters are now loaded from the corresponding settings files rather than being hardcoded into the GUI\'92s themselves. Additionally, the \'91Restore Defaults\'92 buttons now reset the actual GUI parameters in addition to deleting the user settings files.\
+\
+3. The function writeoutputs.m was renamed writeoutputfiles.m.\
+---------------------------------------------------------------------------------------------------------------------(8-4-2014)--\
+Version 2.1 - The purpose of this version is the further development of individual load models.\
+\
+1. In the Hot Water Model, the mixing of hot water from the water heater and cold water from the water main was added for both the shower and bath activities. Water from these two sources is now mixed to reach an occupant\'92s desired temperature of 110 F (from Building America House Simulation Protocols). This has the effect of decreasing hot water usage for each of these activities.\
+\
+2. Extensive modifications were made to the home\'92s thermal model. A thermal capacitance for the exterior envelope of the home was added to include the affects of time lag and decrement factor on both heating and cooling. Additionally, the effect of solar radiation striking the exterior envelope of the home was added, and changes to the amount of solar radiation coming into the home were made.\
+\
+3. Changed the amount of natural light entering the home (i.e. Daylight Level) to make the Lighting Model more consistent with the Home/HVAC Model. Additionally, in the Lighting Model Parameters, the Limiting Daylight Level was changed to 1,000 lux (as used in the Widen model).\
+\
+4. The output data files OutdoorTemperature.txt and OutdoorTemperature.png were renamed OutdoorAirTemperature.txt and OutdoorAirTemperature.png respectively.\
+\
+5. Changed the default Home Insulation Values to Moderately Insulated.\
+\
+6. In the Home/HVAC Model, a home\'92s Infiltration Volumetric Air Exchange Rate, I, is now calculated based on Outdoor Air Temperature and the home\'92s Construction Type (i.e. Loose, Medium, or Tight) using the corresponding table of values found in the 2001 ASHRAE Handbook: Fundamentals.\
+\
+7. An Auxiliary Heating Limit of 32 F (+ scaling factor) was added to the Home/HVAC Model. A heat pump will switch to auxiliary mode whenever the Outdoor Air Temperature drops below this limit.\
+\
+8. The EnvironmentalData GUI was renamed EnvironmentalInputData.\
+\
+9. Added an Electric Vehicle Model (based upon the methodology developed by Grahn).\
+\
+10. The presence of Lighting in a home is now directly related to the other loads present in the home (previously its presence was unrelated to other loads, as with the HVAC and Water Heater loads).\
+\
+11. All 'Active Load Model' references were replaced with 'Electric Vehicle Model' references.\
+\
+12. Updated the default load distribution percentages used for Heat Pumps, Resistive Heating, Nonelectric Heating, and Air Conditioning systems in the Home/HVAC Model.\
+\
+13. Updated the Thermostat Control Logic in the Home/HVAC Model to account for dynamic changes in the Mode of the HVAC System (i.e. changing from Heating Mode to Cooling Mode or vice versa).\
+\
+14. Adjusted the likelihood of an occupant opening the refrigerator door to 0.5 % while in the Food Preparation activity and 0.25 % while in all other activities (other than Sleeping, Grooming, or Away).\
+\
+15. Adjusted the likelihood of an occupant opening the freezer door to 0.25 % while in the Food Preparation activity and 0.125 % while in all other activities (other than Sleeping, Grooming, or Away).\
+\
+16. Replaced the \'91Off\'92 HVAC Mode setting with \'91Auto\'92. When selected, a home\'92s HVAC system will automatically switch between Heating and Cooling Mode (or Off if the required HVAC system is not present). Switching occurs at the start of each day and is based on the day\'92s average temperature.\
+\
+17. Changed the default Additional Power Demand value to 60 W per Occupant.\
+\
+18. Changed the default Water Heater Standard Deviation Power Demand value to 500 W and the minimum and maximum allowable Water Heater Mean Power Demand values to 3 kW and 6 kW.\
+\
+19. The ability to model hot water demand whenever an occupant uses a sink was added to the Hot Water Model. This can occur whenever an occupant is in either the Grooming or Food Preparation activities and is assigned a probability of 2.5 % (i.e. occurring once every 40 minutes). Additionally, hot water is also demanded from the sink whenever an occupant is in the Washing Dishes activity and there is no Dishwasher present in the home (this demand will occur instantaneously).\
+\
+20. In the Hot Water Model, corrected multiple errors with the handling of the Shower and Bath Timer variables. Additionally, the likelihood of an occupant taking a Shower and Bath while in the Grooming activity was decreased to 2.5 % (i.e. occurring once every 40 minutes).\
+\
+21. In the Hot Water Model, corrected multiple errors with the handling of the Washer and Dishwasher  State variables. Additionally, the likelihood of a Dishwasher demanding hot water instead of cold water was changed to 100 % (previously a value of 50 % was used).\
+\
+22. Fixed an error in the Demand Response Parameters GUI which prevented the user from changing the Adjust Thermostat: On Day value in the Water Heater Demand Response Settings. Previously, changes to this value would erroneously adjust the Shed Load: On Day value.\
+---------------------------------------------------------------------------------------------------------------------(9-15-2014)--\
+Version 2.2 - \
+---------------------------------------------------------------------------------------------------------------------------------------}

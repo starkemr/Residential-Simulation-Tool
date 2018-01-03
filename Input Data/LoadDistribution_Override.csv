@@ -1,0 +1,27 @@
+Parameter,Value
+1. Percentage with Heat Pump,9.75
+2. Percentage with Resistive Heating,16.02
+3. Percentage with Nonelectric Heating,66.57
+4. Percentage with Air Conditioning,85.1
+5. Percentage with Water Heater,37.88
+6. Percentage with Refrigerator,99.86
+7. Percentage with Automatic Defrost,94.56
+8. Percentage with Second Refrigerator,32.45
+9. Percentage with Automatic Defrost,94.56
+10. Percentage with Freezer,40.81
+11. Percentage with Automatic Defrost,44.03
+12. Percentage with Second Freezer,3.76
+13. Percentage with Automatic Defrost,44.03
+14. Percentage with Washer,96.66
+15. Percentage with Electric Dryer,73.4
+16. Percentage with Nonelectric Dryer,21.59
+17. Percentage with Dishwasher,67.83
+18. Percentage with Cooking,100
+19. Number of Televisions per Home,3
+20. Number of Computers per Home,2
+21. Percentage with Lighting,100
+22. Incandescent Lighting Percentage,62.5
+23. Halogen Lighting Percentage,4.46
+24. Linear Fluorescent Lighting Percentage,9.94
+25. Compact Fluorescent Lighting Percentage,22.94
+26. LED Lighting Percentage,0.16
